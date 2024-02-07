@@ -13,7 +13,7 @@ class Menu extends Phaser.Scene {
         this.load.image('far buildings', './assets/Sprites/Far Buildings.png')
         this.load.image('close buildings', './assets/Sprites/Close Buildings.png')
         this.load.image('house', './assets/Sprites/house.png')
-        this.load.image('man', './assets/Sprites/Chill_asf.png')
+        this.load.image('man', './assets/Sprites/BadMan.png')
 
         //load sounds
         this.load.audio('sfx-hurt', './assets/Sounds/Hit_hurt 11.wav')
@@ -21,10 +21,28 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx-pickup', './assets/Sounds/Pickup_coin 17.wav')
         this.load.audio('sfx-select', './assets/Sounds/Blip_select 32.wav')
 
+        //load spritesheets
+        //load spritesheet
+        this.load.spritesheet('walk', './assets/Sprite Sheets/BadWalk.png', {
+            frameWidth: 60,
+            frameHeight: 60,
+            startFrame:  0,
+            endFrames: 3
+        })
 
     }
 
     create() {
+        //animation configuration
+        this.anims.create({
+            key: 'walk-anim',
+            frames: this.anims.generateFrameNumbers('walk', { 
+                start: 0, 
+                end: 4, 
+                first: 0
+            }),
+            frameRate: 10
+        })
         //initialize scores
         let score = 0
         let highScore = localStorage.getItem('fireEscapeHighScore') || 0;
