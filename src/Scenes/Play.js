@@ -18,6 +18,8 @@ class Play extends Phaser.Scene {
         this.closeBuildings = this.add.tileSprite(0, 0, 900, 640, 'close buildings').setOrigin(0, 0)
         this.house = this.add.tileSprite(0, 0, 900, 640,'house').setOrigin(0,0)
 
+        this.player = new Player(this, game.config.width/2, game.config.height/3, 'man')
+
     }
 
     update() {
