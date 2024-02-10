@@ -14,6 +14,7 @@ class Menu extends Phaser.Scene {
         this.load.image('close buildings', './assets/Sprites/Close Buildings.png')
         this.load.image('house', './assets/Sprites/house.png')
         this.load.image('man', './assets/Sprites/BadMan.png')
+        this.load.image('platform', './assets/Sprites/Platform.png')
 
         //load sounds
         this.load.audio('sfx-hurt', './assets/Sounds/Hit_hurt 11.wav')
