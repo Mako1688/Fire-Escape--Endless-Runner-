@@ -36,12 +36,13 @@ class Menu extends Phaser.Scene {
         //animation configuration
         this.anims.create({
             key: 'walk-anim',
+            
             frames: this.anims.generateFrameNumbers('walk', { 
                 start: 0, 
-                end: 4, 
+                end: 3, 
                 first: 0
             }),
-            frameRate: 10
+            frameRate: 8
         })
         //initialize scores
         let score = 0
@@ -110,6 +111,7 @@ class Menu extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keyLEFT) || Phaser.Input.Keyboard.JustDown(keyRIGHT) 
         || Phaser.Input.Keyboard.JustDown(keyJUMP) || Phaser.Input.Keyboard.JustDown(keyDOWN)
         || Phaser.Input.Keyboard.JustDown(keyRESET)) {
+            this.input.keyboard.enabled = false;
             this.sound.play('sfx-select');
 
             // Fade out effect
