@@ -2,6 +2,7 @@
 // Name: Marco Ogaz-Vega
 // Date: 2/2/24
 /*
+animations done by: Lois <3
 Your game should:
 
 - Use multiple Scene classes (dictated by your game's style) (1) X
