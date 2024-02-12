@@ -9,9 +9,9 @@ class Player extends Phaser.GameObjects.Sprite {
         // set custom Hero properties
         this.playerVelocity = 300    // in pixels
         this.hurtTimer = 250       // in ms
-        this.WORLD_VELOCITY = -475
-        this.MAX_JUMPS = 2          // change for double/triple/etc. jumps 🤾‍♀️
-        this.JUMP_VELOCITY = -500
+        this.WORLD_VELOCITY = -475  // velocity of background
+        this.MAX_JUMPS = 2          // double jump
+        this.JUMP_VELOCITY = -500   // jump velocity
 
         this.isPressingDown = false; // Track whether the down key is being held
         this.downKeyTimer = 0; // Timer to control how long collision is disabled when pressing down

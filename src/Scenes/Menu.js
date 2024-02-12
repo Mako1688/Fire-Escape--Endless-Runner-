@@ -88,7 +88,6 @@ class Menu extends Phaser.Scene {
         // Adjust colors for the last text
         menuConfig.backgroundColor = '#FF4500'
         menuConfig.color = '#FFF'
-
         this.add.text(game.config.width/2, game.config.height/4 * 3, 'Press any button to start', menuConfig).setOrigin(0.5, 1)
 
         
@@ -104,11 +103,13 @@ class Menu extends Phaser.Scene {
 
     update() {
 
+        //setup background movement
         this.sky.tilePositionX += .5
         this.farBuildings.tilePositionX += 1
         this.closeBuildings.tilePositionX += 1.5
         this.house.tilePositionX +=2
 
+        //press any key to play
         if(Phaser.Input.Keyboard.JustDown(keyLEFT) || Phaser.Input.Keyboard.JustDown(keyRIGHT) 
         || Phaser.Input.Keyboard.JustDown(keyJUMP) || Phaser.Input.Keyboard.JustDown(keyDOWN)
         || Phaser.Input.Keyboard.JustDown(keyRESET)) {

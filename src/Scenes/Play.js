@@ -41,16 +41,19 @@ class Play extends Phaser.Scene {
         //setup collision
         this.housePlatform.body.immovable = true
         this.housePlatform.body.allowGravity = false
+        this.housePlatform.body.checkCollision.down = false
         this.physics.add.collider(this.player, this.housePlatform, this.handlePlatformCollision, null, this)
 
         this.roofPlatform.body.immovable = true
         this.roofPlatform.body.allowGravity = false
+        this.roofPlatform.body.checkCollision.down = false
         this.physics.add.collider(this.player, this.roofPlatform, this.handlePlatformCollision, null, this)
 
         
     }
 
     update() {
+        //background parralaxing
         this.sky.tilePositionX += 1
         this.farBuildings.tilePositionX += 2
         this.closeBuildings.tilePositionX += 3
