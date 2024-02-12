@@ -15,6 +15,7 @@ class Menu extends Phaser.Scene {
         this.load.image('house', './assets/Sprites/house.png')
         this.load.image('man', './assets/Sprites/BadMan.png')
         this.load.image('platform', './assets/Sprites/Platform.png')
+        this.load.image('Box', './assets/Sprites/Boxes.png')
 
         //load sounds
         this.load.audio('sfx-hurt', './assets/Sounds/Hit_hurt 11.wav')
@@ -23,10 +24,30 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx-select', './assets/Sounds/Blip_select 32.wav')
 
         //load spritesheets
-        //load spritesheet
         this.load.spritesheet('walk', './assets/Sprite Sheets/BadWalk.png', {
             frameWidth: 60,
             frameHeight: 60,
+            startFrame:  0,
+            endFrames: 3
+        })
+
+        this.load.spritesheet('devil run', './assets/Sprite Sheets/DevilManRun.png', {
+            frameWidth: 60,
+            frameHeight: 80,
+            startFrame: 0,
+            endFrames: 3
+        })
+
+        this.load.spritesheet('civilian', './assets/Sprite Sheets/CivilianOnFire.png', {
+            frameWidth: 60,
+            frameHeight: 60,
+            startFrame:  0,
+            endFrames: 3
+        })
+
+        this.load.spritesheet('fire', './assets/Sprite Sheets/Fire4Frame.png', {
+            frameWidth: 40,
+            frameHeight: 640,
             startFrame:  0,
             endFrames: 3
         })
@@ -45,10 +66,44 @@ class Menu extends Phaser.Scene {
             }),
             frameRate: 8
         })
+
+        this.anims.create({
+            key: 'devil-anim',
+            frames: this.anims.generateFrameNumbers('devil run', {
+                start: 0,
+                end: 3,
+                first: 0
+            }),
+            frameRate: 8,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: 'civilian-anim',
+            frames: this.anims.generateFrameNumbers('civilian', { 
+                start: 0, 
+                end: 3, 
+                first: 0
+            }),
+            frameRate: 8,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: 'fire-anim',
+            frames: this.anims.generateFrameNumbers('fire', { 
+                start: 0, 
+                end: 3, 
+                first: 0
+            }),
+            frameRate: 15,
+            repeat: -1
+        })
+
         //initialize scores
-        let score = 0
-        let highScore = localStorage.getItem('fireEscapeHighScore') || 0;
-        let mostPeopleSave = localStorage.getItem('fireEscapePeopleSaved') || 0;
+        let highScore = localStorage.getItem('fireEscapeHighScore') || 0
+        let mostPeopleSave = localStorage.getItem('fireEscapePeopleSaved') || 0
+        let mostPeopleLost = localStorage.getItem('fireEscapePeopleLost') || 0
 
         //place tile sprites
         this.sky = this.add.tileSprite(0, 0, 900, 640, 'sky').setOrigin(0, 0)
@@ -79,11 +134,11 @@ class Menu extends Phaser.Scene {
         menuConfig.align = 'left'
         //control text
         this.add.text(game.config.width/10, game.config.height/2, 'Use:\n<->\n↑\n↓', menuConfig).setOrigin(0.5)
-        this.add.text(game.config.width/3, game.config.height / 2, 'To Do:\nMove Left and Right\nJump\nFall Through Platforms', menuConfig).setOrigin(0.5)
+        this.add.text(game.config.width/3, game.config.height / 2, 'To Do:\nMove Left and Right\nJump (Use Double Jump)\nFall Through Platforms', menuConfig).setOrigin(0.5)
 
         //add high score text
         this.add.text(game.config.width/4 * 3, game.config.height/2, 
-        'Current High Score: ' + highScore + '\nMost People Saved: ' + mostPeopleSave, menuConfig).setOrigin(0.5)
+        'Current High Score: ' + highScore + '\nMost People Saved: ' + mostPeopleSave +'\nMost People Lost: ' + mostPeopleLost, menuConfig).setOrigin(0.5)
 
         // Adjust colors for the last text
         menuConfig.backgroundColor = '#FF4500'
