@@ -76,7 +76,7 @@ class Player extends Phaser.GameObjects.Sprite {
             this.timerStarted = true
             this.scene.time.delayedCall(15000 , ()=> {
                 //increment speed
-                this.SPEED_MODIFIER += 0.1
+                this.SPEED_MODIFIER += 0.05
                 //add SPEED INCREASE bool
                 this.timerStarted = false
             })
