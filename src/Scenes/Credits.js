@@ -27,7 +27,7 @@ class Credits extends Phaser.Scene {
         }
 
         this.creditsText = this.add.text(game.config.width / 2, game.config.height / 2,
-         'Credits:\nCoding: Marco Ogaz-Vega\nAssets: Marco Ogaz-Vega (help from Lois <3)\nExplosion Spritesheet: opengameart.org',
+         'Credits:\nCoding: Marco Ogaz-Vega\nAssets: Marco Ogaz-Vega (help from Lois <3)\nExplosion Spritesheet: opengameart.org\nR to PLAY AGAIN',
           this.menuConfig).setOrigin(0.5, 0.5)
 
     }
