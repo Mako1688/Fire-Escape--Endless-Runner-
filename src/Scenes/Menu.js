@@ -22,6 +22,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx-jump', './assets/Sounds/Jump 21.wav')
         this.load.audio('sfx-pickup', './assets/Sounds/Pickup_coin 17.wav')
         this.load.audio('sfx-select', './assets/Sounds/Blip_select 32.wav')
+        this.load.audio('gameMusic', './assets/Sounds/gameMusic.m4a')
 
         //load spritesheets
         this.load.spritesheet('walk', './assets/Sprite Sheets/BadWalk.png', {
@@ -62,60 +63,73 @@ class Menu extends Phaser.Scene {
     }
 
     create() {
-        //animation configuration
-        this.anims.create({
-            key: 'walk-anim',
-            
-            frames: this.anims.generateFrameNumbers('walk', { 
-                start: 0, 
-                end: 3, 
-                first: 0
-            }),
-            frameRate: 8
-        })
+        this.input.keyboard.enabled = true
+        //play music
+        if(!musicPlaying){
+            this.backgroundMusic = this.sound.add('gameMusic', {loop: true})
+            this.backgroundMusic.play()
 
-        this.anims.create({
-            key: 'devil-anim',
-            frames: this.anims.generateFrameNumbers('devil run', {
-                start: 0,
-                end: 3,
-                first: 0
-            }),
-            frameRate: 8,
-            repeat: -1
-        })
+            musicPlaying = true
+        }
+        
+        if(!animsCreated) {
+            //animation configuration
+            this.anims.create({
+                key: 'walk-anim',
+                
+                frames: this.anims.generateFrameNumbers('walk', { 
+                    start: 0, 
+                    end: 3, 
+                    first: 0
+                }),
+                frameRate: 8
+            })
 
-        this.anims.create({
-            key: 'civilian-anim',
-            frames: this.anims.generateFrameNumbers('civilian', { 
-                start: 0, 
-                end: 3, 
-                first: 0
-            }),
-            frameRate: 8,
-            repeat: -1
-        })
+            this.anims.create({
+                key: 'devil-anim',
+                frames: this.anims.generateFrameNumbers('devil run', {
+                    start: 0,
+                    end: 3,
+                    first: 0
+                }),
+                frameRate: 8,
+                repeat: -1
+            })
 
-        this.anims.create({
-            key: 'fire-anim',
-            frames: this.anims.generateFrameNumbers('fire', { 
-                start: 0, 
-                end: 3, 
-                first: 0
-            }),
-            frameRate: 15,
-            repeat: -1
-        })
+            this.anims.create({
+                key: 'civilian-anim',
+                frames: this.anims.generateFrameNumbers('civilian', { 
+                    start: 0, 
+                    end: 3, 
+                    first: 0
+                }),
+                frameRate: 8,
+                repeat: -1
+            })
 
-        this.anims.create({
-            key: 'explosion-anim',
-            frames: this.anims.generateFrameNumbers('explosion', { 
-                start: 0, 
-                end: 24, 
-                first: 0
-            }),
-            frameRate: 60,
-        })
+            this.anims.create({
+                key: 'fire-anim',
+                frames: this.anims.generateFrameNumbers('fire', { 
+                    start: 0, 
+                    end: 3, 
+                    first: 0
+                }),
+                frameRate: 15,
+                repeat: -1
+            })
+
+            this.anims.create({
+                key: 'explosion-anim',
+                frames: this.anims.generateFrameNumbers('explosion', { 
+                    start: 0, 
+                    end: 24, 
+                    first: 0
+                }),
+                frameRate: 60,
+            })
+            animsCreated = true
+        }
+        
 
         //initialize scores
         let highScore = localStorage.getItem('fireEscapeHighScore') || 0
@@ -130,21 +144,21 @@ class Menu extends Phaser.Scene {
 
         // Menu config
         let menuConfig = {
-            fontFamily: 'Helvetica',
+            fontFamily: 'PressStart2P',
             fontSize: '40px',
             backgroundColor: '#510000',
-            color: '#FFD700',
+            color: '#e68a00',
             align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
             },
-            fixedWidth: 0
+            fixedWidth: 0,
         }
 
         //title text
         this.add.text(game.config.width/2, game.config.height/2 - 200, 'Fire Escape', menuConfig).setOrigin(0.5)
-        menuConfig.fontSize = 28
+        menuConfig.fontSize = '15px'
         this.add.text(game.config.width / 2, game.config.height/2 - 100,
             'Avoid the fire and obstacles and save the civilians!', menuConfig).setOrigin(0.5)
 

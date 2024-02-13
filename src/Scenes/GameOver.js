@@ -29,10 +29,10 @@ class GameOver extends Phaser.Scene {
 
         // Menu config
         this.menuConfig = {
-            fontFamily: 'Helvetica',
-            fontSize: '60px',
+            fontFamily: 'PressStart2P',
+            fontSize: '40px',
             backgroundColor: '#510000',
-            color: '#FFD700',
+            color: '#e68a00',
             align: 'center',
             padding: {
                 top: 5,
@@ -56,7 +56,7 @@ class GameOver extends Phaser.Scene {
             this.explosion.destroy()                      //remove explosion sprite
             
             this.scoreText = this.add.text(game.config.width / 2, game.config.height / 5, 'GAME OVER', this.menuConfig).setOrigin(0.5, 0.5)
-            this.menuConfig.fontSize = '40px'
+            this.menuConfig.fontSize = '18px'
             this.scoreText = this.add.text(game.config.width / 4, game.config.height / 2.5, 
             'Your Score: ' + this.score + '\nCivilians Saved: ' + this.civiliansSaved +'\nCivilians Lost: ' + this.civiliansLost, this.menuConfig).setOrigin(0.5)
             this.highScoreText = this.add.text(game.config.width / 4 * 3, game.config.height / 2.5, 
@@ -71,7 +71,7 @@ class GameOver extends Phaser.Scene {
                 this.explosion.on('animationcomplete', () => {
                     this.explosion.destroy()                      //remove explosion sprite
                     this.menuConfig.align = 'center'
-                    this.playAgainText = this.add.text(game.config.width / 2, game.config.height / 1.5, 'Press R to play again\nPress ↓ for Credits', this.menuConfig).setOrigin(0.5, 0.5)
+                    this.playAgainText = this.add.text(game.config.width / 2, game.config.height / 1.5, 'Press R to play again\n↑ to go to Menu\nPress ↓ for Credits', this.menuConfig).setOrigin(0.5, 0.5)
                 })
             })
             
@@ -109,6 +109,20 @@ class GameOver extends Phaser.Scene {
                 this.scene.start('creditsScene')
             }, this)
         }
+
+        //press jump to go to menu
+        if(Phaser.Input.Keyboard.JustDown(keyJUMP)) {
+            this.input.keyboard.enabled = false
+            this.sound.play('sfx-select')
+ 
+            // Fade out effect
+            this.cameras.main.fadeOut(500) // 500 milliseconds fade time
+ 
+            // When the fade is complete, start the play scene
+            this.cameras.main.once('camerafadeoutcomplete', function (camera) {
+                this.scene.start('menuScene')
+            }, this)
+         }
         
     }
 }

@@ -153,11 +153,11 @@ class Play extends Phaser.Scene {
 
         // Menu config
         this.menuConfig = {
-            fontFamily: 'Helvetica',
-            fontSize: '24px',
+            fontFamily: 'PressStart2P',
+            fontSize: '11px',
             backgroundColor: '#510000',
-            color: '#FFD700',
-            align: 'center',
+            color: '#e68a00',
+            align: 'left',
             padding: {
                 top: 5,
                 bottom: 5,
@@ -213,12 +213,13 @@ class Play extends Phaser.Scene {
             this.timerStarted = true
             this.time.delayedCall(15000 , ()=> {
                 //increment speed
-                this.SPEED_MODIFIER += 0.1
+                this.SPEED_MODIFIER += 0.05
                 //add SPEED INCREASE TEXT
                 if(this.SPEED_MODIFIER == 1.5){
-                    this.speedText = this.add.text(game.config.width / 2, 0, 'MAX SPEEEEEED: ' + (Math.round(this.SPEED_MODIFIER * 10) / 10), this.menuConfig).setOrigin(0.5, 0)
+                    this.speedText = this.add.text(game.config.width / 2, 0, 'MAX SPEEEEEED: ' + (Math.round(this.SPEED_MODIFIER * 100) / 100), this.menuConfig).setOrigin(0.5, 0)
+                }else {
+                    this.speedText = this.add.text(game.config.width / 2, 0, 'Current Fire Speed Modifier: ' + (Math.round(this.SPEED_MODIFIER * 100) / 100), this.menuConfig).setOrigin(0.5, 0)
                 }
-                this.speedText = this.add.text(game.config.width / 2, 0, 'Current Fire Speed Modifier: ' + (Math.round(this.SPEED_MODIFIER * 10) / 10), this.menuConfig).setOrigin(0.5, 0)
                 this.timerStarted = false
             })
 
