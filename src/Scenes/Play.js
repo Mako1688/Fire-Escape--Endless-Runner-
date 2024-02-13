@@ -69,7 +69,7 @@ class Play extends Phaser.Scene {
         this.devil3 = this.physics.add.sprite(1000, 213, 'devil run', 0).setOrigin(1, 1)
 
         //create player
-        this.player = new Player(this, game.config.width/2, game.config.height/3, 'man', 0).setOrigin(0, 0)
+        this.player = new Player(this, game.config.width - 60, 213, 'man', 0).setOrigin(0, 0)
 
         //place fire
         this.fire = this.add.sprite(0, 0, 'fire').setOrigin(0, 0)
@@ -454,7 +454,7 @@ class Play extends Phaser.Scene {
     handleCivilianCollision(player, civilian) {
         this.sound.play('sfx-pickup')
         civilian.destroy()
-        this.score += 5
+        this.score += 10
         this.civiliansSaved += 1
         this.scoreText.text = 'Current Score: ' + this.score + '\nCivilians Saved: ' + this.civiliansSaved +'\nCivilians Lost: ' + this.civiliansLost
 

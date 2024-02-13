@@ -162,7 +162,22 @@ class Menu extends Phaser.Scene {
         menuConfig.color = '#FFF'
         this.add.text(game.config.width/2, game.config.height/4 * 3, 'Press any button to start', menuConfig).setOrigin(0.5, 1)
 
-        
+        //add player to menu
+        this.player = this.add.sprite(game.config.width / 4 , game.config.height/4 * 3, 'man')
+        this.player.anims.play({key: 'walk-anim', repeat: -1})
+        this.add.text(game.config.width/10, game.config.height/4 * 3 - 25, 'You ->', menuConfig)
+
+        //add obstacles
+        this.devil = this.add.sprite(game.config.width /4 * 3, game.config.height/4 * 3 - 40, 'devil run', 0)
+        this.devil.anims.play({key: 'devil-anim', repeat: -1})
+        this.box = this.add.sprite(game.config.width /4 * 3, game.config.height/4 * 3 + 25, 'Box')
+        this.add.text(game.config.width/10 * 8, game.config.height/4 * 3 - 25, '<- Obstacles', menuConfig)
+
+        //add civilaians
+        this.civilian = this.add.sprite(game.config.width/2, game.config.height/4 * 3 + 50, 'civilian', 0)
+        this.civilian.anims.play({key: 'civilian-anim', repeat: -1})
+        menuConfig.align = 'center'
+        this.add.text(game.config.width/2, game.config.height -5, '↑\nSave Civilians!', menuConfig).setOrigin(0.5, 1)
 
         //define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)

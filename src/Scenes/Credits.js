@@ -12,6 +12,17 @@ class Credits extends Phaser.Scene {
     }
 
     create() {
+        //re-enable keyboard
+        this.input.keyboard.enabled = true
+
+        //place tile sprites
+        this.sky = this.add.tileSprite(0, 0, 900, 640, 'sky').setOrigin(0, 0)
+        this.farBuildings = this.add.tileSprite(0, 0, 900, 640, 'far buildings').setOrigin(0, 0)
+        this.closeBuildings = this.add.tileSprite(0, 0, 900, 640, 'close buildings').setOrigin(0, 0)
+        this.house = this.add.tileSprite(0, 0, 900, 640,'house').setOrigin(0,0)
+
+        //add reset key
+        keyRESET = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R)
         // Menu config
         this.menuConfig = {
             fontFamily: 'Helvetica',

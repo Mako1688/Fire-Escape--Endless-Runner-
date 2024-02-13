@@ -33,6 +33,7 @@ let config = {
     type: Phaser.AUTO,
     width: 900,
     height: 640,
+    pixelArt: true,
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -40,10 +41,10 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
+            //debug: true,
             gravity: {
                 x:0,
-                y: 1000
+                y: 1500
             }
         }
     },

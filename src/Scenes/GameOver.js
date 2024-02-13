@@ -71,7 +71,7 @@ class GameOver extends Phaser.Scene {
                 this.explosion.on('animationcomplete', () => {
                     this.explosion.destroy()                      //remove explosion sprite
                     this.menuConfig.align = 'center'
-                    this.playAgainText = this.add.text(game.config.width / 2, game.config.height / 1.5, 'Press R to play again\nPress <-> or ↑↓ for Credits', this.menuConfig).setOrigin(0.5, 0.5)
+                    this.playAgainText = this.add.text(game.config.width / 2, game.config.height / 1.5, 'Press R to play again\nPress ↓ for Credits', this.menuConfig).setOrigin(0.5, 0.5)
                 })
             })
             
@@ -97,8 +97,7 @@ class GameOver extends Phaser.Scene {
          }
 
           //press any key to play
-        if(Phaser.Input.Keyboard.JustDown(keyLEFT) || Phaser.Input.Keyboard.JustDown(keyRIGHT) 
-        || Phaser.Input.Keyboard.JustDown(keyJUMP) || Phaser.Input.Keyboard.JustDown(keyDOWN)) {
+        if(Phaser.Input.Keyboard.JustDown(keyDOWN)) {
             this.input.keyboard.enabled = false
             this.sound.play('sfx-select')
 

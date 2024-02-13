@@ -11,7 +11,7 @@ class Player extends Phaser.GameObjects.Sprite {
         this.hurtTimer = 250       // in ms
         this.WORLD_VELOCITY = -475  // velocity of background
         this.MAX_JUMPS = 2          // double jump
-        this.JUMP_VELOCITY = -500   // jump velocity
+        this.JUMP_VELOCITY = -600   // jump velocity
         this.SPEED_MODIFIER = 1
 
         //timer boolean
