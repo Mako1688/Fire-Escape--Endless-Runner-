@@ -52,6 +52,13 @@ class Menu extends Phaser.Scene {
             endFrames: 3
         })
 
+        this.load.spritesheet('explosion', './assets/Sprite Sheets/Shitty Explosion.png', {
+            frameWidth: 100,
+            frameHeight: 100,
+            startFrame:  0,
+            endFrames: 24
+        })
+
     }
 
     create() {
@@ -100,6 +107,16 @@ class Menu extends Phaser.Scene {
             repeat: -1
         })
 
+        this.anims.create({
+            key: 'explosion-anim',
+            frames: this.anims.generateFrameNumbers('explosion', { 
+                start: 0, 
+                end: 24, 
+                first: 0
+            }),
+            frameRate: 60,
+        })
+
         //initialize scores
         let highScore = localStorage.getItem('fireEscapeHighScore') || 0
         let mostPeopleSave = localStorage.getItem('fireEscapePeopleSaved') || 0
@@ -129,7 +146,7 @@ class Menu extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height/2 - 200, 'Fire Escape', menuConfig).setOrigin(0.5)
         menuConfig.fontSize = 28
         this.add.text(game.config.width / 2, game.config.height/2 - 100,
-            'Survive the burning building and save as many people as you can!', menuConfig).setOrigin(0.5)
+            'Avoid the fire and obstacles and save the civilians!', menuConfig).setOrigin(0.5)
 
         menuConfig.align = 'left'
         //control text
@@ -168,8 +185,8 @@ class Menu extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keyLEFT) || Phaser.Input.Keyboard.JustDown(keyRIGHT) 
         || Phaser.Input.Keyboard.JustDown(keyJUMP) || Phaser.Input.Keyboard.JustDown(keyDOWN)
         || Phaser.Input.Keyboard.JustDown(keyRESET)) {
-            this.input.keyboard.enabled = false;
-            this.sound.play('sfx-select');
+            this.input.keyboard.enabled = false
+            this.sound.play('sfx-select')
 
             // Fade out effect
             this.cameras.main.fadeOut(500) // 500 milliseconds fade time

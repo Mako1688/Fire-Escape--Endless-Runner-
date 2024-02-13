@@ -7,12 +7,15 @@ class Player extends Phaser.GameObjects.Sprite {
         this.body.setCollideWorldBounds(true)
 
         // set custom Player properties
-        this.playerVelocity = 300    // in pixels
+        this.playerVelocity = 400    // in pixels
         this.hurtTimer = 250       // in ms
         this.WORLD_VELOCITY = -475  // velocity of background
         this.MAX_JUMPS = 2          // double jump
         this.JUMP_VELOCITY = -500   // jump velocity
         this.SPEED_MODIFIER = 1
+
+        //timer boolean
+        this.timerStarted = false
 
         this.isPressingDown = false; // Track whether the down key is being held
         this.downKeyTimer = 0; // Timer to control how long collision is disabled when pressing down
@@ -66,6 +69,18 @@ class Player extends Phaser.GameObjects.Sprite {
         } else {
             // Reset collision properties when the down key is released
             this.isPressingDown = false;
+        }
+
+        //setup incrementation of speed
+        if(!this.timerStarted && this.SPEED_MODIFIER <= 1.5) {
+            this.timerStarted = true
+            this.scene.time.delayedCall(15000 , ()=> {
+                //increment speed
+                this.SPEED_MODIFIER += 0.1
+                //add SPEED INCREASE bool
+                this.timerStarted = false
+            })
+
         }
           
     }

@@ -18,6 +18,7 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+        this.input.keyboard.enabled = true
         this.WORLD_VELOCITY = -475  // velocity of background
         this.input.keyboard.enabled = true
         this.HOUSE_SPEED = 4
@@ -427,7 +428,11 @@ class Play extends Phaser.Scene {
         
         if(this.player.body.x == 0) {
             this.sound.play('sfx-hurt')
-            this.scene.start('gameoverScene')
+            this.scene.start('gameoverScene', {
+                score: this.score,
+                saved: this.civiliansSaved,
+                lost: this.civiliansLost
+            })
         }
 
 

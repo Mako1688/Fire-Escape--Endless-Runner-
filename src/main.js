@@ -33,6 +33,9 @@ let config = {
     type: Phaser.AUTO,
     width: 900,
     height: 640,
+    scale: {
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     frameRate: 60,
     physics: {
         default: 'arcade',
@@ -44,7 +47,7 @@ let config = {
             }
         }
     },
-    scene: [Menu, Play, GameOver]
+    scene: [Menu, Play, GameOver, Credits]
 }
 
 let game = new Phaser.Game(config)
