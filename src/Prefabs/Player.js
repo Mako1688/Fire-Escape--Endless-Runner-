@@ -6,12 +6,13 @@ class Player extends Phaser.GameObjects.Sprite {
 
         this.body.setCollideWorldBounds(true)
 
-        // set custom Hero properties
+        // set custom Player properties
         this.playerVelocity = 300    // in pixels
         this.hurtTimer = 250       // in ms
         this.WORLD_VELOCITY = -475  // velocity of background
         this.MAX_JUMPS = 2          // double jump
         this.JUMP_VELOCITY = -500   // jump velocity
+        this.SPEED_MODIFIER = 1
 
         this.isPressingDown = false; // Track whether the down key is being held
         this.downKeyTimer = 0; // Timer to control how long collision is disabled when pressing down
@@ -19,13 +20,16 @@ class Player extends Phaser.GameObjects.Sprite {
 
         this.scene = scene // Store a reference to the scene
 
+        //rocket sound
+        this.sfxJump = scene.sound.add('sfx-jump')
+
 
     }
 
     update() {
         // reset X velocity before checking keys
         if(!(keyLEFT.isDown || keyRIGHT.isDown || keyJUMP.isDown)) {
-            this.body.setVelocityX(this.WORLD_VELOCITY)
+            this.body.setVelocityX(this.WORLD_VELOCITY * this.SPEED_MODIFIER)
         }
 
         // move left if left key is down
@@ -42,6 +46,7 @@ class Player extends Phaser.GameObjects.Sprite {
             this.body.setVelocityY(this.JUMP_VELOCITY);
             this.jumping = true
             this.jumps--
+            this.sfxJump.play()
         } else if (this.body.onFloor()) {
             // Reset jumps if the player is on the floor
             this.jumping = false
