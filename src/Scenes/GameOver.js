@@ -14,7 +14,11 @@ class GameOver extends Phaser.Scene {
     }
 
     create() {
-        this.input.keyboard.enabled = true
+        this.input.keyboard.enabled = false
+        this.time.delayedCall(1000 , ()=> {
+            this.input.keyboard.enabled = true
+        })
+
         //initialize scores
         this.highScore = localStorage.getItem('fireEscapeHighScore') || 0
         this.mostPeopleSave = localStorage.getItem('fireEscapePeopleSaved') || 0

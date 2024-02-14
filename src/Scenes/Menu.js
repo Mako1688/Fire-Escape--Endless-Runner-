@@ -8,6 +8,9 @@ class Menu extends Phaser.Scene {
     }
 
     preload() {
+        //load atlas
+        this.load.atlas('atlas', './assets/Sprite Sheets/Fire4Frame.png', './assets/Sprite Sheets/fire.json')
+
         //load background images
         this.load.image('sky', './assets/Sprites/Night.png')
         this.load.image('far buildings', './assets/Sprites/Far Buildings.png')
@@ -42,13 +45,6 @@ class Menu extends Phaser.Scene {
         this.load.spritesheet('civilian', './assets/Sprite Sheets/CivilianOnFire.png', {
             frameWidth: 60,
             frameHeight: 60,
-            startFrame:  0,
-            endFrames: 3
-        })
-
-        this.load.spritesheet('fire', './assets/Sprite Sheets/Fire4Frame.png', {
-            frameWidth: 40,
-            frameHeight: 640,
             startFrame:  0,
             endFrames: 3
         })
@@ -108,14 +104,16 @@ class Menu extends Phaser.Scene {
             })
 
             this.anims.create({
-                key: 'fire-anim',
-                frames: this.anims.generateFrameNumbers('fire', { 
-                    start: 0, 
-                    end: 3, 
-                    first: 0
+                key: 'fire',
+                frames: this.anims.generateFrameNames('atlas', {
+                    prefix: 'sprite',
+                    start: 1,
+                    end: 4,
+                    zeroPad: 1,
+                    suffix: '',
                 }),
-                frameRate: 15,
-                repeat: -1
+                repeat: -1,
+                frameRate: 15
             })
 
             this.anims.create({

@@ -72,10 +72,10 @@ class Play extends Phaser.Scene {
         this.player = new Player(this, game.config.width - 60, 213, 'man', 0).setOrigin(0, 0)
 
         //place fire
-        this.fire = this.add.sprite(0, 0, 'fire').setOrigin(0, 0)
+        this.fire = this.add.sprite(0, 0, 'atlas', 'sprite1').setOrigin(0, 0)
 
         //animate fire
-        this.fire.anims.play('fire-anim', true)
+        this.fire.anims.play('fire', true)
 
         //place civilian
         let ranNum = Math.random()
